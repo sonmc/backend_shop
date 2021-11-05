@@ -8,7 +8,7 @@ using System.IO;
 
 namespace API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/advertises")]
     [ApiController]
     public class AdvertisementController : ControllerBase
     {
@@ -70,13 +70,12 @@ namespace API.Controllers
         }
 
         [Route("delete-adv")]
-        [HttpPost]
-        public IActionResult DeleteAdv([FromBody] Dictionary<string, object> formData)
+        [HttpGet]
+        public AdvertisementModel DeleteAdv(int id)
         {
-            string id = "";
-            if (formData.Keys.Contains("id") && !string.IsNullOrEmpty(Convert.ToString(formData["id"]))) { id = Convert.ToString(formData["id"]); }
-            _advBusiness.Delete(id);
-            return Ok();
+            AdvertisementModel advertiseModel = _advBusiness.GetAdvID(id);
+            _advBusiness.Delete(id.ToString()); 
+            return advertiseModel;
         }
 
         [Route("search")]
@@ -130,8 +129,7 @@ namespace API.Controllers
             catch (Exception ex)
             {
                 return ex.Message;
-            }
-
+            } 
         }
     }
 }

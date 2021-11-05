@@ -70,7 +70,9 @@ namespace DAL
                 "@Description", model.Description,
                 "@Code", model.Code,
                 "@Daystart", model.Daystart,
-                "@Dayend", model.Dayend);
+                "@Dayend", model.Dayend,
+                "@Max", model.Max,
+                "@Percent", model.Percent);
                 if ((result != null && !string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
                 {
                     throw new Exception(Convert.ToString(result) + msgError);
@@ -94,7 +96,9 @@ namespace DAL
                 "@Description", model.Description,
                 "@Code", model.Code,
                 "@Daystart", model.Daystart,
-                "@Dayend", model.Dayend);
+                "@Dayend", model.Dayend,
+                "@Max", model.Max,
+                "@Percent", model.Percent);
                 if ((result != null && !string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
                 {
                     throw new Exception(Convert.ToString(result) + msgError);

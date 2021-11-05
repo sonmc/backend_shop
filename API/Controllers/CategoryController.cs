@@ -50,13 +50,12 @@ namespace API.Controllers
         }
 
         [Route("delete-cat")]
-        [HttpPost]
-        public IActionResult DeleteCat([FromBody] Dictionary<string, object> formData)
+        [HttpGet]
+        public CategoryModel DeleteCat(int id)
         {
-            string id = "";
-            if (formData.Keys.Contains("id") && !string.IsNullOrEmpty(Convert.ToString(formData["id"]))) { id = Convert.ToString(formData["id"]); }
-            _catBusiness.Delete(id);
-            return Ok();
+            CategoryModel caModel = _catBusiness.GetCatID(id); 
+            _catBusiness.Delete(id.ToString());
+            return caModel;
         }
 
         [Route("search")]

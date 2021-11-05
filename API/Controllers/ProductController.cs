@@ -12,7 +12,7 @@ using Model;
 
 namespace API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/products")]
     [ApiController]
     public class ProductController : ControllerBase
     {
@@ -129,14 +129,14 @@ namespace API.Controllers
         }
 
         [Route("delete-pro")]
-        [HttpPost]
-        public IActionResult DeletePro([FromBody] Dictionary<string, object> formData)
+        [HttpGet]
+        public ProductModel DeletePro(int id)
         {
-            string id = "";
-            if (formData.Keys.Contains("id") && !string.IsNullOrEmpty(Convert.ToString(formData["id"]))) { id = Convert.ToString(formData["id"]); }
-            _proBusiness.Delete(id);
-            return Ok();
+            ProductModel proModel = _proBusiness.GetProID(id); 
+            _proBusiness.Delete(id.ToString());
+            return proModel;
         }
+
         [Route("search/{pageIndex}/{pageSize}")]
         [Route("search/{pageIndex}/{pageSize}/{pro_name}")]
         [Route("search/{pageIndex}/{pageSize}/{price_max}/{price_min}")]

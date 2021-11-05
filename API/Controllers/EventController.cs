@@ -9,7 +9,7 @@ using Model;
 
 namespace API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/events")]
     [ApiController]
     public class EventController : ControllerBase
     {
@@ -55,13 +55,12 @@ namespace API.Controllers
         }
 
         [Route("delete-event")]
-        [HttpPost]
-        public IActionResult DeleteEvent([FromBody] Dictionary<string, object> formData)
+        [HttpGet]
+        public EventModel DeleteEvent(int id)
         {
-            string id = "";
-            if (formData.Keys.Contains("id") && !string.IsNullOrEmpty(Convert.ToString(formData["id"]))) { id = Convert.ToString(formData["id"]); }
-            _evenBusiness.Delete(id);
-            return Ok();
+            EventModel eventModel = _evenBusiness.GetEventID(id);
+            _evenBusiness.Delete(id.ToString()); 
+            return eventModel;
         }
 
         [Route("search")]

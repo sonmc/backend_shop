@@ -146,8 +146,6 @@ namespace API.Controllers
                 throw new Exception(ex.Message);
             }
             return response;
-        }
-
-       
+        } 
     }
 }
